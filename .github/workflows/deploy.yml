@@ -55,11 +55,12 @@ jobs:
             --region=europe-west1 \
             --allow-unauthenticated \
             --add-cloudsql-instances ${{ secrets.GCP_PROJECT_ID }}:europe-west1:my-sql-instance \
-            --set-env-vars CLOUD_SQL_CONNECTION_NAME=${{ secrets.GCP_PROJECT_ID }}:europe-west1:my-sql-instance,DB_NAME=mydb,DB_USER=admin,DB_PASSWORD=PaSStest!123 \
+            --set-env-vars CLOUD_SQL_CONNECTION_NAME=${{ secrets.GCP_PROJECT_ID }}:europe-west1:my-sql-instance,DB_NAME=mydb,DB_USER=admin,DB_PASSWORD=${{ secrets.DB_PASSWORD }}\
             --quiet
-
+      
       - name: Get Cloud Run URL
         run: |
           gcloud run services describe php-app \
-            --region europe-west1 \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
+            --region=europe-west1 \
             --format 'value(status.url)'
