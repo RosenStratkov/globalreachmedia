@@ -23,7 +23,7 @@ jobs:
 
       - name: Configure Docker authentication
         run: |
-          gcloud auth configure-docker
+          gcloud auth configure-docker gcr.io --quiet
 
       - name: Build Docker image
         run: |
