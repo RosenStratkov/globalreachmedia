@@ -47,6 +47,13 @@ jobs:
             --set-env-vars CLOUD_SQL_CONNECTION_NAME=project-48d23e34-31d5-4d55-91d:europe-west1:my-sql-instance,DB_NAME=mydb,DB_USER=admin,DB_PASSWORD=PaSStest!123 \
             --quiet
 
+      - name: Make Cloud Run service public
+        run: |
+          gcloud run services add-iam-policy-binding php-app \
+            --region=europe-west1 \
+            --member=allUsers \
+            --role=roles/run.invoker
+
       - name: Get Cloud Run URL
         run: |
           gcloud run services describe php-app \
