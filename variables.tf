@@ -22,3 +22,8 @@ variable "db_password" {
   description = "The MySQL root password"
   default     = "PaSStest!123"
 }
+
+variable "image_tag" {
+  description = "Tag of the Docker image to deploy"
+  default     = "v1"
+}

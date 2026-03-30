@@ -23,8 +23,8 @@ try {
     $dsn = "mysql:unix_socket=$socket;dbname=$db;charset=utf8mb4";
     $pdo = new PDO($dsn, $user, $pass);
 
-    echo "✅ Connected to database successfully!";
+    echo "Connected to database successfully!";
 } catch (PDOException $e) {
-    echo "❌ Connection failed: " . $e->getMessage();
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>

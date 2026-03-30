@@ -58,7 +58,7 @@ resource "google_cloud_run_service" "php_app" {
       service_account_name = "my-service-account@${var.project_id}.iam.gserviceaccount.com"
 
       containers {
-        image = "gcr.io/${var.project_id}/php-app:latest"
+        image = "gcr.io/${var.project_id}/php-app:${var.image_tag}"
 
         env {
           name  = "DB_HOST"
