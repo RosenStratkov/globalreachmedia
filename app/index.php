@@ -11,7 +11,7 @@ try {
     $dsn = "mysql:unix_socket=$socket;dbname=$db;charset=utf8mb4";
     $pdo = new PDO($dsn, $user, $pass);
 
-    echo "Connected to database successfully!  ~~~~~~~~TEST TEST TEST~~~~~~~~~~~~~~";
+    echo "Connected to database successfully!";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
