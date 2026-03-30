@@ -86,3 +86,11 @@ Connected to database successfully!
 - DB_PASSWORD – MySQL password for Cloud SQL, injected as an environment variable.
 
 After the workflow runs your Cloud Run service is live, publicly accessible, and connected to the Cloud SQL database.
+
+# Shell script to get url
+
+- Can be found in the repo called 'get-url.sh' and executed like
+  ```./get-url.sh```
+
+- The url is outputted in the last step of the GitHub Action. Clicking it you should see
+  ```Connected to database successfully!```
