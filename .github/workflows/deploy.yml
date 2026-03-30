@@ -37,22 +37,26 @@ jobs:
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/php-app:latest
 
+      # - name: Deploy to Cloud Run
+      #   run: |
+      #     gcloud run deploy php-app \
+      #       --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/php-app:latest \
+      #       --region europe-west1 \
+      #       --allow-unauthenticated \
+      #       --add-cloudsql-instances project-48d23e34-31d5-4d55-91d:europe-west1:my-sql-instance \
+      #       --set-env-vars CLOUD_SQL_CONNECTION_NAME=project-48d23e34-31d5-4d55-91d:europe-west1:my-sql-instance,DB_NAME=mydb,DB_USER=admin,DB_PASSWORD=PaSStest!123 \
+      #       --quiet
+      
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy php-app \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/php-app:latest \
-            --region europe-west1 \
+            --region=europe-west1 \
             --allow-unauthenticated \
-            --add-cloudsql-instances project-48d23e34-31d5-4d55-91d:europe-west1:my-sql-instance \
-            --set-env-vars CLOUD_SQL_CONNECTION_NAME=project-48d23e34-31d5-4d55-91d:europe-west1:my-sql-instance,DB_NAME=mydb,DB_USER=admin,DB_PASSWORD=PaSStest!123 \
+            --add-cloudsql-instances ${{ secrets.GCP_PROJECT_ID }}:europe-west1:my-sql-instance \
+            --set-env-vars CLOUD_SQL_CONNECTION_NAME=${{ secrets.GCP_PROJECT_ID }}:europe-west1:my-sql-instance,DB_NAME=mydb,DB_USER=admin,DB_PASSWORD=PaSStest!123 \
             --quiet
-
-      # - name: Make Cloud Run service public
-      #   run: |
-      #     gcloud run services add-iam-policy-binding php-app \
-      #       --region=europe-west1 \
-      #       --member=allUsers \
-      #       --role=roles/run.invoker
 
       - name: Get Cloud Run URL
         run: |
