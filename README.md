@@ -1,6 +1,7 @@
 # Overview
 
 Deploy a PHP-FPM app on Cloud Run with a Cloud SQL (MySQL) database using Terraform.
+First is the manual process, GitHub automated process follows below.
 
 # Prerequisites
 
